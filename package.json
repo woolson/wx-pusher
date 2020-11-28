@@ -1,8 +1,8 @@
 {
   "name": "@woolson/wx-pusher",
-  "version": "1.0.0",
-  "description": "",
-  "main": "dist/main.js",
+  "version": "1.0.1",
+  "description": "WxPusher NodeJS SDK",
+  "main": "dist/index.js",
   "scripts": {
     "build": "rm -rf dist && tsc -p tsconfig.build.json",
     "test": "ts-node test/main.ts",

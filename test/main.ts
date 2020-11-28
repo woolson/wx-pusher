@@ -1,4 +1,4 @@
-import { WxPusher } from '../src/main';
+import { WxPusher } from '../src';
 
 const PUSHER_TEST_TOKEN = '<PRIVATE_TOKEN>';
 const TEST_TOPIC = '<PRIVATE_TOPIC>';
