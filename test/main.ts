@@ -12,11 +12,11 @@ const TEST_TOPIC = '<PRIVATE_TOPIC>';
   });
   console.log('发送信息简化版', sendMsgSimpleRes.data, '\n\n');
 
-  const { data: sendMsgRes } = await WxPusher.sendMessageSimple({
+  const { data: sendMsgRes } = await WxPusher.sendMessage({
     appToken: PUSHER_TEST_TOKEN,
     content: '测试内容',
     summary: '测试',
-    topicId: TEST_TOPIC,
+    topicIds: [TEST_TOPIC],
   });
   console.log('发送信息', sendMsgRes.data, '\n\n');
 

@@ -15,7 +15,7 @@
     "type": "git",
     "url": "git+https://github.com/woolson/wx-pusher.git"
   },
-  "keywords": [],
+  "keywords": ["wx", "wechat", "wx-pusher", "node-sdk"],
   "author": "Woolson Lee",
   "license": "ISC",
   "bugs": {
