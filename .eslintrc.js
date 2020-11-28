@@ -1,3 +1,4 @@
+
 module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -33,5 +34,12 @@ module.exports = {
     'semi': ['error', 'always'],
     'space-before-blocks': 'error',
     'space-before-function-paren': ['error', 'never'],
+    'object-curly-newline': [
+      'error',
+      {
+        'ImportDeclaration': { 'multiline': true, 'minProperties': 2 },
+        'ExportDeclaration': 'never',
+      },
+    ],
   },
-}
+};
