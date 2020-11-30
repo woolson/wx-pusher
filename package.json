@@ -1,6 +1,6 @@
 {
   "name": "@woolson/wx-pusher",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "WxPusher NodeJS SDK",
   "main": "dist/index.js",
   "scripts": {

@@ -108,37 +108,95 @@ export interface CreateQrcodeResponseData {
 /** 查询用户列表 */
 export interface GetUserListRequestParams {
   /** 应用密钥标志 */
-  appToken: string,
+  appToken: string
   /** 请求数据的页码 */
-  page: number,
+  page: number
   /** 分页大小 */
-  pageSize: number,
+  pageSize: number
   /** 用户的uid，可选，如果不传就是查询所有用户，传uid就是查某个用户的信息 */
-  uid?: string,
+  uid?: string
 }
 
 /** 获取用户列表响应内容 */
 export interface GetUserListResponseData {
   /** 当前数据页码 */
-  page: number;
+  page: number
   /** 当前页码大小  */
-  pageSize: number;
+  pageSize: number
   /** 用户信息数组 */
-  records: GetUserListResponseDataItem[];
+  records: GetUserListResponseDataItem[]
   /** 所有的用户数量 */
-  total: number;
+  total: number
 }
 
 /** 获取用户列表响应用户信息 */
 interface GetUserListResponseDataItem {
   /** 用户关注时间 */
-  createTime: number;
+  createTime: number
   /** 是否可用，也就是用户是否开启接收消息 */
-  enable: boolean;
+  enable: boolean
   /** 用户头像 */
-  headImg: string;
+  headImg: string
   /** 用户昵称 */
-  nickName: string;
+  nickName: string
   /** 用户的UID */
-  uid: string;
+  uid: string
+}
+
+/** 公众号互动类型 */
+export enum ActionType {
+  /** 用户关注应用回调 */
+  AppSubscribe = 'app_subscribe',
+  /** 上行消息回调 */
+  SendUpCmd = 'send_up_cmd'
+}
+
+/** 用户来源 */
+export enum UserSource {
+  /** 表示扫码关注 */
+  Scan = 'scan',
+  /** 表示链接关注 */
+  Link = 'link',
+  /** 通过消息关注应用 */
+  Command = 'command'
+}
+
+/** 调用事件类型及相关数据 */
+export interface EventData {
+  /** 动作 */
+  action: ActionType
+  /** 动作相关数据 */
+  data: SubscribeEventData | UpCmdEventData
+}
+
+/** 调用事件数据部分 */
+export interface EventDataBase {
+  /** 应用id */
+  appId: number
+  /** 废弃字段 */
+  appKey: string
+  /** 应用名称 */
+  appName: string
+  /** 用户uid */
+  uid: string
+  /** 用户昵称 */
+  userName: string
+  /** 用户头像，最后一个数值代表正方形头像大小（有0、46、64、96、132数值可选，0代表640*640正方形头像），用户没有头像时该项为空 */
+  userHeadImg: string
+  /** 消息发生时间 */
+  time: number
+}
+
+/** 用户关注消息回调数据 */
+export interface SubscribeEventData extends EventDataBase {
+  /** 用户关注渠道，scan表示扫码关注，link表示链接关注，command表示通过消息关注应用，后期可能还会添加其他渠道。 */
+  source: UserSource
+  /** 用户扫描带参数的二维码，二维码携带的参数 */
+  extra: string
+}
+
+/** 上行消息回调数据 */
+export interface UpCmdEventData extends EventDataBase {
+  /** 用户发送的内容 */
+  content: string;
 }

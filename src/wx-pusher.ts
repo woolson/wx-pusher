@@ -10,6 +10,7 @@ import {
   GetUserListResponseData,
   ResponseBase,
   SendMsgResponseDataItem,
+  CreateQrcodeResponseData,
 } from './interface';
 import {
   SEND_BASE_URL,
@@ -59,7 +60,7 @@ export class WxPusher {
    * @param data 创建二维码请求参数
    */
   static createQrcode(data: CreateQrcodeRequestBody) {
-    return Axios.request<Buffer>({
+    return Axios.request<ResponseBase<CreateQrcodeResponseData>>({
       baseURL: SEND_BASE_URL,
       url: SendApis.CreateQrcode,
       method: 'POST',
