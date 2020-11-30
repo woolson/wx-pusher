@@ -36,7 +36,7 @@ const {} data: sendMsgSimpleRes } = await WxPusher.sendMessageSimple({
 console.log('发送信息简化版', sendMsgSimpleRes.data, '\n\n');
 
 /** 发送信息 */
-const { data: sendMsgRes } = await WxPusher.sendMessageSimple({
+const { data: sendMsgRes } = await WxPusher.sendMessage({
   appToken: PUSHER_TEST_TOKEN,
   content: '测试推送内容内容',
   summary: '测试标题',
