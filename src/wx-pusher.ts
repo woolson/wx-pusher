@@ -4,6 +4,7 @@ import { SEND_BASE_URL } from './constant';
 import {
   UserListGetReqParams,
   UserListGetResData,
+  UserRejectReqBody,
   UserRemoveReqBody,
 } from './interfaces/user.interface';
 import {
@@ -38,8 +39,8 @@ export class WxPusher {
   static msgSend(data: MsgSendReqBody) {
     return Axios.request<ResBase<MsgSendResDataItem[]>>({
       baseURL: SEND_BASE_URL,
-      url: SendApis.MsgSend,
       method: 'POST',
+      url: SendApis.MsgSend,
       data,
     });
   }
@@ -64,8 +65,8 @@ export class WxPusher {
   static qrcodeCreate(data: QrcodeCreateReqBody) {
     return Axios.request<ResBase<QrcodeCreateResData>>({
       baseURL: SEND_BASE_URL,
-      url: SendApis.QrcodeCreate,
       method: 'POST',
+      url: SendApis.QrcodeCreate,
       data,
     });
   }
@@ -94,6 +95,34 @@ export class WxPusher {
       baseURL: SEND_BASE_URL,
       url: SendApis.UserListGetV2,
       params,
+    });
+  }
+
+  /**
+   * 删除用户对应用，主题的关注
+   * @method DELETE
+   * @param data [请求参数](https://wxpusher.zjiecode.com/docs/#/?id=删除用户)
+   */
+  static userRemove(data: UserRemoveReqBody) {
+    return Axios.request<ResBase<string>>({
+      baseURL: SEND_BASE_URL,
+      method: 'DELETE',
+      url: SendApis.UserRemove,
+      data,
+    });
+  }
+
+  /**
+   * 拉黑用户
+   * @method PUT
+   * @param data [请求参数](https://wxpusher.zjiecode.com/docs/#/?id=删除用户)
+   */
+  static userReject(data: UserRejectReqBody) {
+    return Axios.request<ResBase<string>>({
+      baseURL: SEND_BASE_URL,
+      method: 'PUT',
+      url: SendApis.UserReject,
+      data,
     });
   }
 }

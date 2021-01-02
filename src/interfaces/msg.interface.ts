@@ -11,7 +11,7 @@ export enum MsgContentType {
 /* 通知消息请求体 */
 export interface MsgSendReqBase {
   /* 消息内容 */
-  content?: string
+  content: string
   /* 消息摘要 */
   summary?: string
   /* 原文链接，可选参数 */
@@ -33,7 +33,7 @@ export interface MsgSendReqBody extends MsgSendReqBase {
   /* 应用的标志 */
   appToken: string
   /* 内容类型 */
-  contentType?: MsgContentType
+  contentType: MsgContentType
   /* 群发目标的topicId */
   topicIds?: number[]
   /* 发送目标的UID */

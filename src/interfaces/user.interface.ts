@@ -1,23 +1,15 @@
-import { UserSubscribeType } from './base.interface';
+import { PaginationBase, UserSubscribeType } from './base.interface';
 
-/** 查询用户列表 */
-export interface UserListGetReqParams {
+/** 查询用户列表请求参数 */
+export interface UserListGetReqParams extends PaginationBase {
   /** 应用密钥标志 */
   appToken: string
-  /** 请求数据的页码 */
-  page: number
-  /** 分页大小 */
-  pageSize: number
   /** 用户的uid，可选，如果不传就是查询所有用户，传uid就是查某个用户的信息 */
   uid?: string
 }
 
 /** 获取用户列表响应内容 */
-export interface UserListGetResData {
-  /** 当前数据页码 */
-  page: number
-  /** 当前页码大小  */
-  pageSize: number
+export interface UserListGetResData extends PaginationBase {
   /** 用户信息数组 */
   records: UserListGetResDataItem[]
   /** 所有的用户数量 */
@@ -36,6 +28,18 @@ export interface UserListGetResDataItem {
   nickName: string
   /** 用户的UID */
   uid: string
+}
+
+/** 查询用户列表请求参数V2 */
+export interface UserListGetReqParamsV2 extends PaginationBase {
+  /** 应用密钥标志 */
+  appToken: string
+  /** 用户的uid，可选，如果不传就是查询所有用户，传uid就是查某个用户的信息 */
+  uid?: string
+  /** 可选，不传查询所有用户，true查询拉黑用户，false查询没有拉黑的用户 */
+  isBlock?: boolean
+  /** 可选，不传查询所有用户，值参考 UserSubscribeType */
+  type?: UserSubscribeType
 }
 
 /**
@@ -59,4 +63,22 @@ export interface UserListGetResDataItemV2 {
   type: UserSubscribeType
   /** 关注的应用或者主题名字 */
   target: string
+}
+
+/** 删除用户接口请求参数 */
+export interface UserRemoveReqBody {
+  /** 应用密钥标志 */
+  appToken: string
+  /** 用户id，通过用户查询接口可以获取 */
+  id: number
+}
+
+/** 拉黑用户接口请求参数 */
+export interface UserRejectReqBody {
+  /** 应用密钥标志 */
+  appToken: string
+  /** 用户id，通过用户查询接口可以获取 */
+  id: number
+  /** 是否拉黑，true表示拉黑，false表示取消拉黑 */
+  reject: boolean
 }
