@@ -35,3 +35,11 @@ export enum UserSource {
   /** 通过消息关注应用 */
   Command = 'command'
 }
+
+/** 用户关注类型 */
+export enum UserSubscribeType {
+  /** 关注应用 */
+  Application,
+  /** 关注topic */
+  Topic
+}

@@ -1,3 +1,5 @@
+import { UserSubscribeType } from './base.interface';
+
 /** 查询用户列表 */
 export interface UserListGetReqParams {
   /** 应用密钥标志 */
@@ -34,4 +36,27 @@ export interface UserListGetResDataItem {
   nickName: string
   /** 用户的UID */
   uid: string
+}
+
+/**
+ * 获取用户列表V2
+ * @description 相比旧接口少了enable字段，多了reject[是否拉黑]、id[用户id]、type[用户关注类型]、target[关注的应用/主题名称]
+ */
+export interface UserListGetResDataItemV2 {
+  /** 用户关注时间 */
+  createTime: number
+  /** 用户头像 */
+  headImg: string
+  /** 用户昵称 */
+  nickName: string
+  /** 用户的UID */
+  uid: string
+  /** 是否拉黑 */
+  reject: false
+  /** 如果调用删除或者拉黑接口，需要这个id */
+  id: number
+  /** 关注类型，0：关注应用，1：关注topic */
+  type: UserSubscribeType
+  /** 关注的应用或者主题名字 */
+  target: string
 }

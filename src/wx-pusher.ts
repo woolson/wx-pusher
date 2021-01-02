@@ -83,4 +83,17 @@ export class WxPusher {
       params,
     });
   }
+
+  /**
+   * 分页查询到所有关注应用和关注主题的用户
+   * @method GET
+   * @params params [查询参数及分页信息](https://wxpusher.zjiecode.com/docs/#/?id=查询app的关注用户v2)
+   */
+  static userListGetV2(params: UserListGetReqParams) {
+    return Axios.request<ResBase<UserListGetResData>>({
+      baseURL: SEND_BASE_URL,
+      url: SendApis.UserListGetV2,
+      params,
+    });
+  }
 }
