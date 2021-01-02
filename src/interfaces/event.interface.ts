@@ -1,6 +1,9 @@
 import { UserSource } from './base.interface';
 
-/** 公众号互动类型 */
+/**
+ * 公众号互动类型
+ * @description [文档](https://wxpusher.zjiecode.com/docs/#/?id=callback)
+ */
 export enum EventActionType {
   /** 用户关注应用回调 */
   AppSubscribe = 'app_subscribe',
@@ -8,7 +11,10 @@ export enum EventActionType {
   SendUpCmd = 'send_up_cmd'
 }
 
-/** 调用事件类型及相关数据 */
+/**
+ * 调用事件类型及相关数据
+ * @description [文档](https://wxpusher.zjiecode.com/docs/#/?id=callback)
+ */
 export interface EventData {
   /** 动作 */
   action: EventActionType
@@ -16,7 +22,10 @@ export interface EventData {
   data: EventSubscribeData | EventUpCmdData
 }
 
-/** 调用事件数据部分 */
+/**
+ * 调用事件数据部分
+ * @description [文档](https://wxpusher.zjiecode.com/docs/#/?id=callback)
+ */
 export interface EventDataBase {
   /** 应用id */
   appId: number
@@ -34,7 +43,10 @@ export interface EventDataBase {
   time: number
 }
 
-/** 用户关注消息回调数据 */
+/**
+ * 用户关注消息回调数据
+ * @description [文档](https://wxpusher.zjiecode.com/docs/#/?id=用户关注回调)
+ */
 export interface EventSubscribeData extends EventDataBase {
   /** 用户关注渠道，scan表示扫码关注，link表示链接关注，command表示通过消息关注应用，后期可能还会添加其他渠道。 */
   source: UserSource
@@ -42,7 +54,10 @@ export interface EventSubscribeData extends EventDataBase {
   extra: string
 }
 
-/** 上行消息回调数据 */
+/**
+ * 上行消息回调数据
+ * @description [文档](https://wxpusher.zjiecode.com/docs/#/?id=上行消息（用户发送消息回调）)
+ */
 export interface EventUpCmdData extends EventDataBase {
   /** 用户发送的内容 */
   content: string;
