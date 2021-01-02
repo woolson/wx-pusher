@@ -42,6 +42,14 @@ export interface UserListGetReqParamsV2 extends PaginationBase {
   type?: UserSubscribeType
 }
 
+/** 获取用户列表响应内容 */
+export interface UserListGetResDataV2 extends PaginationBase {
+  /** 用户信息数组 */
+  records: UserListGetResDataItemV2[]
+  /** 所有的用户数量 */
+  total: number
+}
+
 /**
  * 获取用户列表V2
  * @description 相比旧接口少了enable字段，多了reject[是否拉黑]、id[用户id]、type[用户关注类型]、target[关注的应用/主题名称]

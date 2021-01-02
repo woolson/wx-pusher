@@ -4,6 +4,7 @@ import { SEND_BASE_URL } from './constant';
 import {
   UserListGetReqParams,
   UserListGetResData,
+  UserListGetResDataV2,
   UserRejectReqBody,
   UserRemoveReqBody,
 } from './interfaces/user.interface';
@@ -91,7 +92,7 @@ export class WxPusher {
    * @params params [查询参数及分页信息](https://wxpusher.zjiecode.com/docs/#/?id=查询app的关注用户v2)
    */
   static userListGetV2(params: UserListGetReqParams) {
-    return Axios.request<ResBase<UserListGetResData>>({
+    return Axios.request<ResBase<UserListGetResDataV2>>({
       baseURL: SEND_BASE_URL,
       url: SendApis.UserListGetV2,
       params,
