@@ -1,44 +1,44 @@
+import { AxiosResponse, default as Axios } from 'axios';
+import { SendApis, ResBase } from './interfaces/base.interface';
+import { SEND_BASE_URL } from './constant';
 import {
-  AxiosResponse, default as Axios,
-} from 'axios';
+  UserListGetReqParams,
+  UserListGetResData,
+  UserRemoveReqBody,
+} from './interfaces/user.interface';
 import {
-  SendApis,
-  SendMsgRequestBody,
-  SendMsgRequestParams,
-  CreateQrcodeRequestBody,
-  GetUserListRequestParams,
-  GetUserListResponseData,
-  ResponseBase,
-  SendMsgResponseDataItem,
-  CreateQrcodeResponseData,
-} from './interface';
+  MsgSendReqParams,
+  MsgSendResDataItem,
+  MsgSendReqBody,
+} from './interfaces/msg.interface';
 import {
-  SEND_BASE_URL,
-} from './constant';
+  QrcodeCreateReqBody,
+  QrcodeCreateResData,
+} from './interfaces/qrcode.interface';
 
 export class WxPusher {
   /**
    * 发送消息（简化版，只支持发送文字格式）
-   * @param params 请求参数
+   * @method GET
+   * @params params [请求参数](https://wxpusher.zjiecode.com/docs/#/?id=发送消息-1)
    */
-  static sendMessageSimple(
-    params: SendMsgRequestParams
-  ): Promise<AxiosResponse<ResponseBase<SendMsgResponseDataItem[]>>> {
-    return Axios.request({
+  static msgSendSimple(params: MsgSendReqParams) {
+    return Axios.request<AxiosResponse<ResBase<MsgSendResDataItem[]>>>({
       baseURL: SEND_BASE_URL,
-      url: SendApis.SendMessage,
+      url: SendApis.MsgSend,
       params,
     });
   }
 
   /**
    * 发送消息
-   * @param data 请求参数
+   * @method POST
+   * @params data [请求参数](https://wxpusher.zjiecode.com/docs/#/?id=发送消息-1)
    */
-  static sendMessage(data: SendMsgRequestBody) {
-    return Axios.request<ResponseBase<SendMsgResponseDataItem[]>>({
+  static msgSend(data: MsgSendReqBody) {
+    return Axios.request<ResBase<MsgSendResDataItem[]>>({
       baseURL: SEND_BASE_URL,
-      url: SendApis.SendMessage,
+      url: SendApis.MsgSend,
       method: 'POST',
       data,
     });
@@ -46,34 +46,41 @@ export class WxPusher {
 
   /**
    * 获取发送消息状态
-   * @param messageId 信息的ID
+   * @method GET
+   * @params messageId [信息的ID](https://wxpusher.zjiecode.com/docs/#/?id=查询状态)
    */
-  static getMessageStatus(messageId: number) {
-    return Axios.request<ResponseBase<string>>({
+  static msgStatusGet(messageId: number) {
+    return Axios.request<ResBase<string>>({
       baseURL: SEND_BASE_URL,
-      url: `${SendApis.SendMessage}/${messageId}`,
+      url: `${SendApis.MsgStatusGet}/${messageId}`,
     });
   }
 
   /**
    * 创建带参数二维码（二维码有效期最长30天）
-   * @param data 创建二维码请求参数
+   * @method POST
+   * @params data [创建二维码请求参数](https://wxpusher.zjiecode.com/docs/#/?id=创建参数二维码)
    */
-  static createQrcode(data: CreateQrcodeRequestBody) {
-    return Axios.request<ResponseBase<CreateQrcodeResponseData>>({
+  static qrcodeCreate(data: QrcodeCreateReqBody) {
+    return Axios.request<ResBase<QrcodeCreateResData>>({
       baseURL: SEND_BASE_URL,
-      url: SendApis.CreateQrcode,
+      url: SendApis.QrcodeCreate,
       method: 'POST',
       data,
     });
   }
 
-  /** 查询应用用列表 */
-  static getUserList(params: GetUserListRequestParams) {
-    return Axios.request<ResponseBase<GetUserListResponseData>>({
+  /**
+   * 分页查询到所有关注你App的微信用户
+   * @method GET
+   * @params params [查询参数及分页信息](https://wxpusher.zjiecode.com/docs/#/?id=查询App的关注用户V1（已弃用）)
+   * @deprecated 请使用getUserListV2
+   */
+  static userListGet(params: UserListGetReqParams) {
+    return Axios.request<ResBase<UserListGetResData>>({
       baseURL: SEND_BASE_URL,
-      url: SendApis.GetUserList,
+      url: SendApis.UserListGet,
       params,
-    })
+    });
   }
 }

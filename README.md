@@ -27,7 +27,7 @@ const PUSHER_TEST_TOKEN = '<PRIVATE_TOKEN>';
 const TEST_TOPIC = <PRIVATE_TOPIC>;
 
 /** 发送信息简化版 */
-const {} data: sendMsgSimpleRes } = await WxPusher.sendMessageSimple({
+const {} data: sendMsgSimpleRes } = await WxPusher.sendMsgSimple({
   appToken: PUSHER_TEST_TOKEN,
   content: '测试内容',
   summary: '测试',
@@ -36,7 +36,7 @@ const {} data: sendMsgSimpleRes } = await WxPusher.sendMessageSimple({
 console.log('发送信息简化版', sendMsgSimpleRes.data, '\n\n');
 
 /** 发送信息 */
-const { data: sendMsgRes } = await WxPusher.sendMessage({
+const { data: sendMsgRes } = await WxPusher.sendMsg({
   appToken: PUSHER_TEST_TOKEN,
   content: '测试推送内容内容',
   summary: '测试标题',
@@ -48,7 +48,7 @@ console.log('发送信息', sendMsgRes.data, '\n\n');
 ### 查询信息状态
 
 ```typescript
-const { data: messageStatus } = await WxPusher.getMessageStatus(71126666)
+const { data: messageStatus } = await WxPusher.getMsgStatus(71126666)
 console.log('获取信息状态', messageStatus.data, '\n\n');
 ```
 
