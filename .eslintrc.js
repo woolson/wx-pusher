@@ -37,9 +37,10 @@ module.exports = {
     'object-curly-newline': [
       'error',
       {
-        'ImportDeclaration': { 'multiline': true, 'minProperties': 2 },
+        'ImportDeclaration': { 'multiline': true, 'minProperties': 3 },
         'ExportDeclaration': 'never',
       },
     ],
+    "@typescript-eslint/explicit-module-boundary-types": "off"
   },
 };

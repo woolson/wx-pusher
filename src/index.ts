@@ -1,3 +1,3 @@
 export * from './wx-pusher';
-export * from './interface';
+export * from './interfaces/base.interface';
 export * from './constant';
